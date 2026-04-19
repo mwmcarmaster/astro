@@ -1,0 +1,17 @@
+---
+interface Props {
+  currentPath?: string;
+}
+
+const { currentPath = '/' } = Astro.props;
+const isActive = (href) => currentPath === `/${href}`;
+---
+<div class="subnav">
+  <div class="container">
+    <a href="diagnostyka-i-naprawy.html" aria-current={isActive('diagnostyka-i-naprawy.html') ? 'page' : undefined}>Diagnostyka i naprawy</a>
+    <a href="przeglady-okresowe.html" aria-current={isActive('przeglady-okresowe.html') ? 'page' : undefined}>Przeglądy okresowe</a>
+    <a href="serwis-klimatyzacji.html" aria-current={isActive('serwis-klimatyzacji.html') ? 'page' : undefined}>Serwis klimatyzacji</a>
+    <a href="blokady-alkoholowe.html" aria-current={isActive('blokady-alkoholowe.html') ? 'page' : undefined}>Blokady alkoholowe</a>
+    <a href="obsluga-flot.html" aria-current={isActive('obsluga-flot.html') ? 'page' : undefined}>Obsługa flot</a>
+  </div>
+</div>
