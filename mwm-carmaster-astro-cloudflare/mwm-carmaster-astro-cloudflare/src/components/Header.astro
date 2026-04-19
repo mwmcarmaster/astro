@@ -1,0 +1,46 @@
+---
+interface Props {
+  currentPath?: string;
+}
+
+const { currentPath = '/' } = Astro.props;
+const isTopActive = (href) => {
+  if (href === 'uslugi.html') {
+    return [
+      '/uslugi.html',
+      '/diagnostyka-i-naprawy.html',
+      '/przeglady-okresowe.html',
+      '/serwis-klimatyzacji.html',
+      '/blokady-alkoholowe.html',
+      '/obsluga-flot.html'
+    ].includes(currentPath);
+  }
+  if (href === 'index.html') return currentPath === '/' || currentPath === '/index.html';
+  return currentPath === `/${href}`;
+};
+---
+<header class="site-header" data-header>
+  <div class="topbar">
+    <div class="container topbar-inner">
+      <span>Poniedziałek–Piątek: 8:00–17:00</span>
+      <span><a href="tel:+48605101100">+48 605 101 100</a></span>
+      <span><a href="#" class="js-email" data-user="carmaster" data-domain="bosch-service.pl" data-mail-link="true">carmaster [at] bosch-service.pl</a></span>
+    </div>
+  </div>
+  <div class="container nav-wrap">
+    <a class="brand" href="index.html" aria-label="Strona główna MWM Carmaster">
+      <span class="brand-logo-safe"><img src="/img/logos/logo-bcs-kwadrat-selected.png" alt="Bosch Car Service" class="site-logo"></span>
+      <span class="brand-name">MWM Carmaster</span>
+    </a>
+    <button class="nav-toggle" aria-expanded="false" aria-controls="site-nav">Menu</button>
+    <nav id="site-nav" class="site-nav" aria-label="Główne menu">
+      <a href="index.html" aria-current={isTopActive('index.html') ? 'page' : undefined}>Start</a>
+      <a href="uslugi.html" aria-current={isTopActive('uslugi.html') ? 'page' : undefined}>Usługi</a>
+      <a href="cennik.html" aria-current={isTopActive('cennik.html') ? 'page' : undefined}>Cennik</a>
+      <a href="faq.html" aria-current={isTopActive('faq.html') ? 'page' : undefined}>FAQ</a>
+      <a href="o-nas.html" aria-current={isTopActive('o-nas.html') ? 'page' : undefined}>O nas</a>
+      <a href="kontakt.html" aria-current={isTopActive('kontakt.html') ? 'page' : undefined}>Kontakt</a>
+      <a href="oferta-bosch-wiosenny-serwis-klimatyzacji.html" aria-current={isTopActive('oferta-bosch-wiosenny-serwis-klimatyzacji.html') ? 'page' : undefined}>Oferta Bosch</a>
+    </nav>
+  </div>
+</header>
